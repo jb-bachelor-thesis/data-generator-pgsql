@@ -26,11 +26,16 @@ public class DataGeneratorPgsqlApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         log.info("Welcome to the item generation application!");
-        System.out.print("Enter the number of items to generate: ");
+        System.out.print("Enter the number of items to generate (if less than 1, the database will be erased): ");
         int numberOfItems = Integer.parseInt(System.console().readLine());
 
-        itemGenerationService.generateAndInsertItems(numberOfItems)
-                .collectList()
-                .subscribe(items -> log.info("Generated {} items", items.size()));
+        if (numberOfItems < 1) {
+            log.info("Clearing database");
+            itemGenerationService.clearDB().block();
+        } else {
+            itemGenerationService.generateAndInsertItems(numberOfItems)
+                    .collectList()
+                    .subscribe(items -> log.info("Generated {} items", items.size()));
+        }
     }
 }

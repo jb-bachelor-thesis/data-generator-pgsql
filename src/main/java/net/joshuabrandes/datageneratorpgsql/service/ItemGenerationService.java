@@ -4,6 +4,7 @@ import net.joshuabrandes.datageneratorpgsql.db.ItemRepository;
 import net.joshuabrandes.datageneratorpgsql.model.entity.Item;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 
 @Service
@@ -22,5 +23,9 @@ public class ItemGenerationService {
                         .runOn(Schedulers.parallel())
                         .map(_ -> RandomizerUtil.getRandomItem())
         );
+    }
+
+    public Mono<Void> clearDB() {
+        return itemRepository.deleteAll();
     }
 }
