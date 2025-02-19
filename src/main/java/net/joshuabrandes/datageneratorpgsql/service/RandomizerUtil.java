@@ -197,6 +197,7 @@ public class RandomizerUtil {
             case "Books" -> getRandomFromList(namesBooks);
             case "Electronics" -> getRandomFromLists(electronicsCompanies, namesElectronics);
             case "Home" -> getRandomFromLists(homeCompanies, namesHome);
+            case "Clothing" -> getRandomFromLists(clothingCompanies, namesClothing);
             case "Sports" -> getRandomFromLists(sportsCompanies, namesSports);
             case "Beauty" -> getRandomFromLists(beautyCompanies, namesBeauty);
             case "Toys" -> getRandomFromLists(toysCompanies, namesToys);

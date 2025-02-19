@@ -28,4 +28,8 @@ public class ItemGenerationService {
     public Mono<Void> clearDB() {
         return itemRepository.deleteAll();
     }
+
+    public Flux<Item> getAllItems() {
+        return itemRepository.findAll();
+    }
 }
